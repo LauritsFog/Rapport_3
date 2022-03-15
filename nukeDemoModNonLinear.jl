@@ -31,23 +31,26 @@ function solveIP(H, K)
 
     A = constructA(H,K)
 
-    @variable(myModel, u[1:h], Bin )
+    @variable(myModel, x[1:h], Bin )
     @variable(myModel, R[1:h] >= 0 )
+    @variable(myModel, u[1:h] >= 0)
 
     @objective(myModel, Min, sum(u[j] for j=1:h) )
 
     @constraint(myModel, [j=1:h],R[j] >= H[j] + 10 )
-    @constraint(myModel, [i=1:h],R[i] == sum(A[i,j]*u[j] for j=1:h) )
-    @constraint(myModel, [i=1:h],R[i]-H[i]-10 >= u[i] )
-    @constraint(myModel, [i=1:h],-(R[i]-H[i]-10) <= u[i] )
+    @constraint(myModel, [i=1:h],R[i] == sum(A[i,j]*x[j] for j=1:h) )
+    @constraint(myModel, [i=1:h],-(R[i]-H[i]-10) <= u[i])
+    @constraint(myModel, [i=1:h],R[i]-H[i]-10 <= u[i])
+    # Constraint for preventing bombs next to each other:
+    @constraint(myModel, [i=1:h-1],x[i]+x[i+1] <= 1)
 
     optimize!(myModel)
 
     if termination_status(myModel) == MOI.OPTIMAL
         println("Objective value: ", JuMP.objective_value(myModel))
-        println("u = ", JuMP.value.(u))
+        println("x = ", JuMP.value.(x))
         println("R = ", JuMP.value.(R))
-        CSV.write("uValuesNonLinear.csv",  Tables.table(JuMP.value.(u)), header=false)
+        CSV.write("xValuesNonLinear.csv",  Tables.table(JuMP.value.(x)), header=false)
         CSV.write("RValuesNonLinear.csv",  Tables.table(JuMP.value.(R)), header=false)
     else
         println("Optimize was not succesful. Return code: ", termination_status(myModel))

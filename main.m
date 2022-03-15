@@ -80,13 +80,14 @@ newInterHeight = interHeight(2:end)-dirtRemoved;
 
 figure(3)
 plot(d(2:end),newInterHeight);
-hold all
-for i = 1:length(objectiveFunction)
-    if objectiveFunction(i) == 1
-        xline(i*0.25);
-    end
-end
 ylim([-300 0]);
+
+% hold on
+% for i = 1:length(objectiveFunction)
+%     if objectiveFunction(i) == 1
+%         xline(i*0.25);
+%     end
+% end
 
 %%
 
@@ -103,10 +104,11 @@ newInterHeightNonLinear = interHeight(2:end)-dirtRemovedNonLinear;
 
 figure(4)
 plot(d(2:end),newInterHeightNonLinear);
-hold all
-for i = 1:length(objectiveFunction)
-    if objectiveFunctionNonLinear(i) == 1
-        xline(i*0.25);
-    end
-end
 ylim([-300 0]);
+
+% hold on
+% for i = 1:length(objectiveFunction)
+%     if objectiveFunctionNonLinear(i) == 1
+%         xline(i*0.25);
+%     end
+% end
