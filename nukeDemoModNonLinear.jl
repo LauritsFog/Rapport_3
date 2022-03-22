@@ -33,14 +33,14 @@ function solveIP(H, K)
 
     @variable(myModel, x[1:h], Bin )
     @variable(myModel, R[1:h] >= 0 )
-    @variable(myModel, u[1:h] >= 0)
+    @variable(myModel, u[1:h] >= 0 )
 
     @objective(myModel, Min, sum(u[j] for j=1:h) )
 
     @constraint(myModel, [j=1:h],R[j] >= H[j] + 10 )
     @constraint(myModel, [i=1:h],R[i] == sum(A[i,j]*x[j] for j=1:h) )
+    @constraint(myModel, [i=1:h],R[i]-H[i]-10 <= u[i])
     @constraint(myModel, [i=1:h],-(R[i]-H[i]-10) <= u[i])
-    @constraint(myModel, [i=1:h],u[i]<=R[i]-H[i]-10)
     # Constraint for preventing bombs next to each other:
     # @constraint(myModel, [i=1:h-1],x[i]+x[i+1] <= 1)
 
