@@ -71,6 +71,7 @@ for i = 1:length(objectiveFunction)
 end
 
 %%
+%Takes the hight from the start and removes the dirt
 
 newInterHeight = interHeight(2:end)-dirtRemoved;
 
@@ -104,7 +105,6 @@ newInterHeightNonLinear = interHeight(2:end)-dirtRemovedNonLinear;
 
 figure(4)
 plot(d(2:end),newInterHeightNonLinear);
-ylim([-300 0]);
 
 % hold on
 % for i = 1:length(objectiveFunction)
