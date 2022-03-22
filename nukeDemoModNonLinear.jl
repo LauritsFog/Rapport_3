@@ -40,9 +40,9 @@ function solveIP(H, K)
     @constraint(myModel, [j=1:h],R[j] >= H[j] + 10 )
     @constraint(myModel, [i=1:h],R[i] == sum(A[i,j]*x[j] for j=1:h) )
     @constraint(myModel, [i=1:h],-(R[i]-H[i]-10) <= u[i])
-    @constraint(myModel, [i=1:h],R[i]-H[i]-10 <= u[i])
+    @constraint(myModel, [i=1:h],u[i]<=R[i]-H[i]-10)
     # Constraint for preventing bombs next to each other:
-    @constraint(myModel, [i=1:h-1],x[i]+x[i+1] <= 1)
+    # @constraint(myModel, [i=1:h-1],x[i]+x[i+1] <= 1)
 
     optimize!(myModel)
 
