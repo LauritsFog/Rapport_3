@@ -112,3 +112,16 @@ plot(d(2:end),newInterHeightNonLinear);
 %         xline(i*0.25);
 %     end
 % end
+
+%%
+
+objectiveFunctionNonLinearNoNeighbors = table2array(readtable("xValuesNonLinearNoNeighbors.csv"));
+dirtRemovedNonLinearNoNeighbors = table2array(readtable("RValuesNonLinearNoNeighbors.csv"));
+
+newInterHeightNonLinearNoNeighbors = interHeight(2:end)-dirtRemovedNonLinear;
+
+%%
+
+figure(5)
+plot(d(2:end),newInterHeightNonLinearNoNeighbors);
+ylim([-300 0]);
