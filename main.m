@@ -88,7 +88,7 @@ ylabel('Height from sea level (m)');
 % Plotting the new height map with bombs. 
 
 figure(3)
-plot(d(2:end),newInterHeight);
+plot(d(1:end),newInterHeight);
 ylim([-300 0]);
 
 % hold on
