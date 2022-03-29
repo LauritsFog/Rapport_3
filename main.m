@@ -178,6 +178,7 @@ for i = 1:length(objectiveFunctionNonLinearNoNeighbors)
         zline(i*0.25,'g');
     end
 end
+
 legend('Height before bombing','Height after bombing','Placement of bombs');
 xlabel('Distance from sea (km)');
 ylabel('Height from sea level (m)');
@@ -185,13 +186,13 @@ ylabel('Height from sea level (m)');
 %% Plots together
 
 figure(7) 
-hold on
-plot(d,newInterHeight);
-ylim([-300 0]);
 hold on 
-plot(d,newInterHeightNonLinear);
+plot(d,newInterHeight,'LineWidth',1);
+ylim([-300 0]); 
 hold on 
-plot(d,newInterHeightNonLinearNoNeighbors);
+plot(d,newInterHeightNonLinear,'LineWidth',2);
+hold on 
+plot(d,newInterHeightNonLinearNoNeighbors,'LineWidth',1);
 legend("min bombs","smoothing","no neighbors")
 
 %% Number of bombs
