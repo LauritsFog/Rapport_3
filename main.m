@@ -19,7 +19,7 @@ height = data(:,3);
 xdif = (xdata(1:end-1)-xdata(2:end)).*lat2miles*miles2km;
 ydif = (ydata(1:end-1)-ydata(2:end)).*long2miles*miles2km;
 
-% Computing distance from mediterrenean sea. 
+% Computing distance from mediterrenean sea.
 
 dist = zeros(1,length(xdata))';
 
@@ -33,7 +33,7 @@ end
 
 numPoints = floor(dist(end)/0.25)+2;
 
-% Mutl. by 10 to round to nearest 100th meter. 
+% Mutl. by 10 to round to nearest 100th meter.
 
 d = linspace(0,floor(dist(end)*10),numPoints-1)'./10;
 
@@ -95,7 +95,7 @@ newInterHeightNonLinear = interHeight-dirtRemovedNonLinear;
 
 %%
 
-% Plotting the new height map with bombs. 
+% Plotting the new height map with bombs.
 
 figure(4)
 title('Maximizing smoothness');
@@ -114,7 +114,7 @@ ylabel('Height from sea level (m)');
 
 %% 5
 
-% Implementing a constraint in Julia 
+% Implementing a constraint in Julia
 
 xValuesNonLinearNoNeighbors = table2array(readtable("xValuesNonLinearNoNeighbors.csv"));
 dirtRemovedNonLinearNoNeighbors = table2array(readtable("RValuesNonLinearNoNeighbors.csv"));
@@ -150,7 +150,7 @@ newInterHeightNonLinearExtended = interHeight(2:end-2)-dirtRemovedNonLinearExten
 
 %%
 
-figure(6) 
+figure(6)
 title('Minimizing number of bombs with possibility of three different bombs');
 plot(d,interHeight,'b');
 hold on
@@ -169,6 +169,8 @@ for i = 1:length(newInterHeightNonLinearExtended)
         xline(i*0.25,'c');
     end
 end
+
+legend('Height before bombing','Height after bombing','Placement of bombs');
 legend('Height before bombing','Height after bombing','Placement of K1 bombs','Placement of K2 bombs');
 
 xlabel('Distance from sea (km)');
@@ -176,16 +178,18 @@ ylabel('Height from sea level (m)');
 
 %% Plots together
 
-figure(7) 
+figure(7)
 hold on
 plot(d,newInterHeight);
-hold on 
-plot(d,newInterHeightNonLinear);
-hold on 
-plot(d,newInterHeightNonLinearNoNeighbors);
-% hold on
-% plot(d(2:end-2),newInterHeightNonLinearExtended);
+hold on
+plot(d,newInterHeight,'LineWidth',1);
+ylim([-300 0]);
+hold on
+plot(d,newInterHeightNonLinear,'LineWidth',2);
+hold on
+plot(d,newInterHeightNonLinearNoNeighbors,'LineWidth',1);
 legend("Minimizing bombs","Smoothing","No neighbors")
+
 
 %% Number of bombs
 
@@ -196,12 +200,3 @@ numboms_nok=sum(xValuesNonLinearNoNeighbors);
 table(numboms_min_bombs,numboms_nok,numboms)
 
 distancebetweenbombs=xValuesNonLinearNoNeighbors-xValuesNonLinear;
-
-
-
-
-
-
-
-
-

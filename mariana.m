@@ -149,6 +149,7 @@ table(numboms_min_bombs,numboms_nok,numboms)
 distancebetweenbombs=objectiveFunctionNonLinear2-objectiveFunctionNonLinear;
 
 %% 
+
 figure(5)
 plot(d(2:end),newInterHeightNonLinear2);
 
