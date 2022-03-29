@@ -171,7 +171,7 @@ for i = 1:length(newInterHeightNonLinearExtended)
 end
 
 legend('Height before bombing','Height after bombing','Placement of bombs');
-legend('Height before bombing','Height after bombing','Placement of K1 bombs','Placement of K2 bombs');
+legend('Height before bombing','Height after bombing','Setting 0 bomb','Setting 1 bomb');
 
 xlabel('Distance from sea (km)');
 ylabel('Height from sea level (m)');
@@ -181,9 +181,6 @@ ylabel('Height from sea level (m)');
 figure(7)
 hold on
 plot(d,newInterHeight);
-hold on
-plot(d,newInterHeight,'LineWidth',1);
-ylim([-300 0]);
 hold on
 plot(d,newInterHeightNonLinear,'LineWidth',2);
 hold on
