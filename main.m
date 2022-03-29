@@ -119,7 +119,7 @@ ylabel('Height from sea level (m)');
 xValuesNonLinearNoNeighbors = table2array(readtable("xValuesNonLinearNoNeighbors.csv"));
 dirtRemovedNonLinearNoNeighbors = table2array(readtable("RValuesNonLinearNoNeighbors.csv"));
 
-newInterHeightNonLinearNoNeighbors = interHeight-dirtRemovedNonLinear;
+newInterHeightNonLinearNoNeighbors = interHeight-dirtRemovedNonLinearNoNeighbors;
 
 %%
 
@@ -182,9 +182,9 @@ figure(7)
 hold on
 plot(d,newInterHeight);
 hold on
-plot(d,newInterHeightNonLinear,'LineWidth',2);
+plot(d,newInterHeightNonLinear);
 hold on
-plot(d,newInterHeightNonLinearNoNeighbors,'LineWidth',1);
+plot(d,newInterHeightNonLinearNoNeighbors);
 legend("Minimizing bombs","Smoothing","No neighbors")
 
 
