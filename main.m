@@ -171,7 +171,7 @@ for i = 1:length(newInterHeightNonLinearExtended)
 end
 
 legend('Height before bombing','Height after bombing','Placement of bombs');
-legend('Height before bombing','Height after bombing','Setting 0 bomb','Setting 1 bomb');
+legend('Height before bombing','Height after bombing','Setting 1 bomb','Setting 2 bomb');
 
 xlabel('Distance from sea (km)');
 ylabel('Height from sea level (m)');
@@ -193,7 +193,8 @@ legend("Minimizing bombs","Smoothing","No neighbors")
 Minbombs=sum(xValues);
 SmoothingNumberbombs=sum(xValuesNonLinear);
 NoneigboorNumberbombs=sum(xValuesNonLinearNoNeighbors);
+ExtendedNumberBombs=nnz(xBombs)+nnz(yBombs);
 
-table(Minbombs,SmoothingNumberbombs,NoneigboorNumberbombs)
+table(Minbombs,SmoothingNumberbombs,NoneigboorNumberbombs,ExtendedNumberBombs)
 
 distancebetweenbombs=xValuesNonLinearNoNeighbors-xValuesNonLinear;
