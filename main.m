@@ -169,7 +169,7 @@ for i = 1:length(newInterHeightNonLinearExtended)
         xline(i*0.25,'c');
     end
 end
-legend('Height before bombing','Height after bombing','\color{g} Placement of K1 bombs','\color{m} Placement of K2 bombs');
+legend('Height before bombing','Height after bombing','Placement of K1 bombs','Placement of K2 bombs');
 
 xlabel('Distance from sea (km)');
 ylabel('Height from sea level (m)');
