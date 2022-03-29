@@ -191,7 +191,11 @@ legend("Minimizing bombs","Smoothing","No neighbors")
 
 %% Number of bombs
 
+Minbombs=sum(xValues);
+SmoothingNumberbombs=sum(xValuesNonLinear);
+NoneigboorNumberbombs=sum(xValuesNonLinearNoNeighbors);
 
+table(Minbombs,SmoothingNumberbombs,NoneigboorNumberbombs)
 
 distancebetweenbombs=xValuesNonLinearNoNeighbors-xValuesNonLinear;
 
