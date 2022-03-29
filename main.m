@@ -86,6 +86,21 @@ ylabel('Height from sea level (m)');
 
 %%
 
+% Plotting the new height map with bombs.
+
+figure(3)
+plot(d(1:end),newInterHeight);
+ylim([-300 0]);
+
+% hold on
+% for i = 1:length(objectiveFunction)
+%     if objectiveFunction(i) == 1
+%         xline(i*0.25);
+%     end
+% end
+
+%%
+
 % Importing results from non-linear objective function.
 
 xValuesNonLinear = table2array(readtable("xValuesNonLinear.csv"));
@@ -180,9 +195,10 @@ ylabel('Height from sea level (m)');
 
 figure(7)
 hold on
-plot(d,newInterHeight);
+plot(d,newInterHeight,'b','LineWidth',3);
+ylim([-300 0]);
 hold on
-plot(d,newInterHeightNonLinear);
+plot(d,newInterHeightNonLinear,'g', 'LineWidth',2);
 hold on
 plot(d,newInterHeightNonLinearNoNeighbors);
 legend("Minimizing bombs","Smoothing","Smoothing without neighbors")
@@ -200,5 +216,3 @@ ExtendedNumberBombs=nnz(xBombs)+nnz(yBombs);
 table(Minbombs,SmoothingNumberbombs,NoneigboorNumberbombs,ExtendedNumberBombs)
 
 distancebetweenbombs=xValuesNonLinearNoNeighbors-xValuesNonLinear;
-
-
