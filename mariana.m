@@ -94,7 +94,7 @@ end
 
 %%
 
-newInterHeight = interHeight(2:end)-dirtRemoved;
+newInterHeight = interHeight-dirtRemoved;
 
 %%
 
@@ -112,7 +112,7 @@ ylim([-300 0]);
 objectiveFunctionNonLinear = table2array(readtable("xValuesNonLinear.csv"));
 dirtRemovedNonLinear = table2array(readtable("RValuesNonLinear.csv"));
 
-newInterHeightNonLinear = interHeight(2:end)-dirtRemovedNonLinear;
+newInterHeightNonLinear = interHeight-dirtRemovedNonLinear;
 
 %%
 
@@ -127,7 +127,7 @@ plot(d(2:end),newInterHeightNonLinear);
 objectiveFunctionNonLinear2 = table2array(readtable("xValuesNonLinearnok.csv"));
 dirtRemovedNonLinear2 = table2array(readtable("RValuesNonLinearnok.csv"));
 
-newInterHeightNonLinear2 = interHeight(2:end)-dirtRemovedNonLinear2;
+newInterHeightNonLinear2 = interHeight-dirtRemovedNonLinear2;
 
 %%
 
@@ -149,6 +149,7 @@ table(numboms_min_bombs,numboms_nok,numboms)
 distancebetweenbombs=objectiveFunctionNonLinear2-objectiveFunctionNonLinear;
 
 %% 
+
 figure(5)
 plot(d(2:end),newInterHeightNonLinear2);
 

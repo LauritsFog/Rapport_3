@@ -42,15 +42,17 @@ function solveIP(H, K)
     @constraint(myModel, [i=1:h],R[i] == sum(A[i,j]*x[j] for j=1:h) )
     # @constraint(myModel, [i=1:h],u[i] <= R[i]-H[i]-10)
     # @constraint(myModel, [i=1:h],u[i] >= -(R[i]-H[i]-10))
-    
+    # Constraint for preventing bombs next to each other:
+    @constraint(myModel, [i=1:h-1],x[i]+x[i+1] <= 1)
+
     optimize!(myModel)
 
     if termination_status(myModel) == MOI.OPTIMAL
         println("Objective value: ", JuMP.objective_value(myModel))
         println("x = ", JuMP.value.(x))
         println("R = ", JuMP.value.(R))
-        CSV.write("xValuesNonLinear.csv",  Tables.table(JuMP.value.(x)), header=false)
-        CSV.write("RValuesNonLinear.csv",  Tables.table(JuMP.value.(R)), header=false)
+        CSV.write("xValuesNonLinearNoNeighbors.csv",  Tables.table(JuMP.value.(x)), header=false)
+        CSV.write("RValuesNonLinearNoNeighbors.csv",  Tables.table(JuMP.value.(R)), header=false)
     else
         println("Optimize was not succesful. Return code: ", termination_status(myModel))
     end
