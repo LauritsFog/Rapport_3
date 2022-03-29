@@ -124,8 +124,8 @@ newInterHeightNonLinearNoNeighbors = interHeight-dirtRemovedNonLinearNoNeighbors
 %%
 
 figure(5)
-title('Maximizing smoothness without neighbouring bombs');
 plot(d,interHeight,'b');
+title('Maximizing smoothness without neighbouring bombs');
 hold on
 plot(d,newInterHeightNonLinearNoNeighbors,'r');
 hold all
@@ -185,7 +185,9 @@ hold on
 plot(d,newInterHeightNonLinear);
 hold on
 plot(d,newInterHeightNonLinearNoNeighbors);
-legend("Minimizing bombs","Smoothing","No neighbors")
+legend("Minimizing bombs","Smoothing","Smoothing without neighbors")
+xlabel('Distance from sea (km)');
+ylabel('Height from sea level (m)');
 
 
 %% Number of bombs
