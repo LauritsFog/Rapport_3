@@ -179,11 +179,12 @@ ylabel('Height from sea level (m)');
 figure(7) 
 hold on
 plot(d,newInterHeight);
-ylim([-300 0]);
 hold on 
 plot(d,newInterHeightNonLinear);
 hold on 
 plot(d,newInterHeightNonLinearNoNeighbors);
+% hold on
+% plot(d(2:end-2),newInterHeightNonLinearExtended);
 legend("Minimizing bombs","Smoothing","No neighbors")
 
 %% Number of bombs
