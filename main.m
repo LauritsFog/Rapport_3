@@ -111,7 +111,7 @@ newInterHeightNonLinear = interHeight-dirtRemovedNonLinear;
 
 % Plotting the new height map with bombs. 
 
-figure(3)
+figure(4)
 plot(d,interHeight,'b');
 hold on
 plot(d,newInterHeightNonLinear,'r');
@@ -136,7 +136,7 @@ newInterHeightNonLinearNoNeighbors = interHeight-dirtRemovedNonLinear;
 
 %%
 
-figure(4)
+figure(5)
 plot(d,interHeight,'b');
 hold on
 plot(d,newInterHeightNonLinearNoNeighbors,'r');
@@ -162,7 +162,7 @@ newInterHeightNonLinearExtended = interHeight(2:end-2)-dirtRemovedNonLinearExten
 
 %%
 
-figure(5)
+figure(6) 
 plot(d,interHeight,'b');
 hold on
 plot(d(2:end-2),newInterHeightNonLinearExtended,'r');
@@ -183,3 +183,34 @@ end
 legend('Height before bombing','Height after bombing','Placement of K1 bombs','Placement of K2 bombs','Placement of K3 bombs');
 xlabel('Distance from sea (km)');
 ylabel('Height from sea level (m)');
+
+%% Plots together
+
+figure(7) 
+hold on
+plot(d,newInterHeight);
+ylim([-300 0]);
+hold on 
+plot(d,newInterHeightNonLinear);
+hold on 
+plot(d,newInterHeightNonLinearNoNeighbors);
+legend("min bombs","smoothing","no neighbors")
+
+%% Number of bombs
+
+numboms_min_bombs=sum(objectiveFunction);
+numboms=sum(objectiveFunctionNonLinear);
+numboms_nok=sum(objectiveFunctionNonLinearNoNeighbors);
+
+table(numboms_min_bombs,numboms_nok,numboms)
+
+distancebetweenbombs=objectiveFunctionNonLinearNoNeighbors-objectiveFunctionNonLinear;
+
+
+
+
+
+
+
+
+
