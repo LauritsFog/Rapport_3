@@ -198,3 +198,5 @@ ExtendedNumberBombs=nnz(xBombs)+nnz(yBombs);
 table(Minbombs,SmoothingNumberbombs,NoneigboorNumberbombs,ExtendedNumberBombs)
 
 distancebetweenbombs=xValuesNonLinearNoNeighbors-xValuesNonLinear;
+
+
