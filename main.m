@@ -169,17 +169,15 @@ for i = 1:length(newInterHeightNonLinearExtended)
         xline(i*0.25,'c');
     end
 end
-<<<<<<< HEAD
 
 legend('Height before bombing','Height after bombing','Placement of bombs');
-=======
 legend('Height before bombing','Height after bombing','Placement of K1 bombs','Placement of K2 bombs');
 
->>>>>>> 8dd3d3b96935da9c41412895ea8ca5e46bc08c1a
 xlabel('Distance from sea (km)');
 ylabel('Height from sea level (m)');
 
 %% Plots together
+
 figure(7) 
 hold on 
 plot(d,newInterHeight,'LineWidth',1);
@@ -187,13 +185,9 @@ ylim([-300 0]);
 hold on 
 plot(d,newInterHeightNonLinear,'LineWidth',2);
 hold on 
-<<<<<<< HEAD
 plot(d,newInterHeightNonLinearNoNeighbors,'LineWidth',1);
-legend("min bombs","smoothing","no neighbors")
-=======
-plot(d,newInterHeightNonLinearNoNeighbors);
 legend("Minimizing bombs","Smoothing","No neighbors")
->>>>>>> 8dd3d3b96935da9c41412895ea8ca5e46bc08c1a
+
 
 %% Number of bombs
 
