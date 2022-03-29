@@ -194,17 +194,15 @@ ylabel('Height from sea level (m)');
 %% Plots together
 
 figure(7)
-hold on
-plot(d,newInterHeight,'b','LineWidth',3);
+plot(d,newInterHeight,'g','LineWidth',3);
 ylim([-300 0]);
 hold on
-plot(d,newInterHeightNonLinear,'g', 'LineWidth',2);
+plot(d,newInterHeightNonLinear,'r','LineWidth',1.3);
 hold on
-plot(d,newInterHeightNonLinearNoNeighbors);
-legend("Minimizing bombs","Smoothing","Smoothing without neighbors")
+plot(d,newInterHeightNonLinearNoNeighbors,'b','LineWidth',1.3);
+legend("Minimizing bombs","Maximizing smoothness","Maximizing smoothness without neighbors")
 xlabel('Distance from sea (km)');
 ylabel('Height from sea level (m)');
-
 
 %% Number of bombs
 
@@ -216,3 +214,10 @@ ExtendedNumberBombs=nnz(xBombs)+nnz(yBombs);
 table(Minbombs,SmoothingNumberbombs,NoneigboorNumberbombs,ExtendedNumberBombs)
 
 distancebetweenbombs=xValuesNonLinearNoNeighbors-xValuesNonLinear;
+
+%%
+
+table(std(newInterHeight),std(newInterHeightNonLinear),std(newInterHeightNonLinearNoNeighbors))
+
+
+
