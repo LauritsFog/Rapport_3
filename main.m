@@ -119,7 +119,7 @@ ylabel('Height from sea level (m)');
 xValuesNonLinearNoNeighbors = table2array(readtable("xValuesNonLinearNoNeighbors.csv"));
 dirtRemovedNonLinearNoNeighbors = table2array(readtable("RValuesNonLinearNoNeighbors.csv"));
 
-newInterHeightNonLinearNoNeighbors = interHeight-dirtRemovedNonLinear;
+newInterHeightNonLinearNoNeighbors = interHeight-dirtRemovedNonLinearNoNeighbors;
 
 %%
 
@@ -197,3 +197,5 @@ NoneigboorNumberbombs=sum(xValuesNonLinearNoNeighbors);
 table(Minbombs,SmoothingNumberbombs,NoneigboorNumberbombs)
 
 distancebetweenbombs=xValuesNonLinearNoNeighbors-xValuesNonLinear;
+
+
