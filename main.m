@@ -88,7 +88,7 @@ ylabel('Height from sea level (m)');
 % Plotting the new height map with bombs. 
 
 figure(3)
-plot(d(2:end),newInterHeight);
+plot(d,newInterHeight);
 ylim([-300 0]);
 
 % hold on
@@ -158,26 +158,28 @@ zBombs = table2array(readtable("zValuesNonLinearExtended.csv"));
 
 dirtRemovedNonLinearExtended = table2array(readtable("RValuesNonLinearExtended.csv"));
 
-newInterHeightNonLinearExtended = interHeight-dirtRemovedNonLinearExtended;
+newInterHeightNonLinearExtended = interHeight(2:end-2)-dirtRemovedNonLinearExtended;
 
 %%
 
 figure(5)
 plot(d,interHeight,'b');
 hold on
-plot(d,newInterHeightNonLinearNoNeighbors,'r');
-hold all
-for i = 1:length(objectiveFunctionNonLinearNoNeighbors)
+plot(d(2:end-2),newInterHeightNonLinearExtended,'r');
+for i = 1:length(newInterHeightNonLinearExtended)
     if xBombs(i) == 1
+        hold on
         xline(i*0.25,'g');
     end
     if yBombs(i) == 1
-        yline(i*0.25,'g');
+        hold on
+        xline(i*0.25,'c');
     end
-    if yBombs(i) == 1
-        zline(i*0.25,'g');
+    if zBombs(i) == 1
+        hold on
+        xline(i*0.25,'m');
     end
 end
-legend('Height before bombing','Height after bombing','Placement of bombs');
+legend('Height before bombing','Height after bombing','Placement of K1 bombs','Placement of K2 bombs','Placement of K3 bombs');
 xlabel('Distance from sea (km)');
 ylabel('Height from sea level (m)');
