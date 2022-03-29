@@ -86,21 +86,6 @@ ylabel('Height from sea level (m)');
 
 %%
 
-% Plotting the new height map with bombs. 
-
-figure(3)
-plot(d,newInterHeight);
-ylim([-300 0]);
-
-% hold on
-% for i = 1:length(xValues)
-%     if xValues(i) == 1
-%         xline(i*0.25);
-%     end
-% end
-
-%%
-
 % Importing results from non-linear objective function.
 
 xValuesNonLinear = table2array(readtable("xValuesNonLinear.csv"));
