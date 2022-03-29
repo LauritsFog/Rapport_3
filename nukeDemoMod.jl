@@ -2,7 +2,7 @@ using GLPK, Cbc, JuMP, SparseArrays
 using CSV, DataFrames
 
 H = vec(Matrix{Float64}(DataFrame(CSV.File("interHeight.csv"))))
-
+pushfirst!(H, 0)
 # H = [10 30 70 50 70 120 140 120 100 80]
 
 K = [300 140 40]

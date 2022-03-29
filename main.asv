@@ -152,32 +152,8 @@ ylabel('Height from sea level (m)');
 
 %%
 
-xBombs = table2array(readtable("xValuesNonLinearExtended.csv"));
-yBombs = table2array(readtable("yValuesNonLinearExtended.csv"));
-zBombs = table2array(readtable("zValuesNonLinearExtended.csv"));
+objectiveFunctionNonLinearNoNeighbors = table2array(readtable("xValuesNonLinearExtended.csv"));
+dirtRemovedNonLinearNoNeighbors = table2array(readtable("RValuesNonLinearNoNeighbors.csv"));
 
-dirtRemovedNonLinearExtended = table2array(readtable("RValuesNonLinearExtended.csv"));
+newInterHeightNonLinearNoNeighbors = interHeight-dirtRemovedNonLinear;
 
-newInterHeightNonLinearExtended = interHeight-dirtRemovedNonLinearExtended;
-
-%%
-
-figure(5)
-plot(d,interHeight,'b');
-hold on
-plot(d,newInterHeightNonLinearNoNeighbors,'r');
-hold all
-for i = 1:length(objectiveFunctionNonLinearNoNeighbors)
-    if xBombs(i) == 1
-        xline(i*0.25,'g');
-    end
-    if yBombs(i) == 1
-        yline(i*0.25,'g');
-    end
-    if yBombs(i) == 1
-        zline(i*0.25,'g');
-    end
-end
-legend('Height before bombing','Height after bombing','Placement of bombs');
-xlabel('Distance from sea (km)');
-ylabel('Height from sea level (m)');
