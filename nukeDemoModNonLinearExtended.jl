@@ -25,7 +25,7 @@ function constructA(H,K)
     return A
 end
 
-function solveIP(H, K)
+function solveIP(H, K1, K2, K3)
     h = length(H)
     myModel = Model(Cbc.Optimizer)
     # If your want ot use GLPK instead use:
@@ -56,12 +56,16 @@ function solveIP(H, K)
     if termination_status(myModel) == MOI.OPTIMAL
         println("Objective value: ", JuMP.objective_value(myModel))
         println("x = ", JuMP.value.(x))
+        println("y = ", JuMP.value.(y))
+        println("z = ", JuMP.value.(z))
         println("R = ", JuMP.value.(R))
-        CSV.write("xValuesNonLinear.csv",  Tables.table(JuMP.value.(x)), header=false)
-        CSV.write("RValuesNonLinear.csv",  Tables.table(JuMP.value.(R)), header=false)
+        CSV.write("xValuesNonLinearExtended.csv",  Tables.table(JuMP.value.(x)), header=false)
+        CSV.write("yValuesNonLinearExtended.csv",  Tables.table(JuMP.value.(y)), header=false)
+        CSV.write("zValuesNonLinearExtended.csv",  Tables.table(JuMP.value.(z)), header=false)
+        CSV.write("RValuesNonLinearExtended.csv",  Tables.table(JuMP.value.(R)), header=false)
     else
         println("Optimize was not succesful. Return code: ", termination_status(myModel))
     end
 end
 
-solveIP(H,K)
+solveIP(H, K1, K2, K3)
