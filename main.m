@@ -195,12 +195,12 @@ ylabel('Height from sea level (m)');
 
 figure(7)
 hold on
-plot(d,newInterHeight,'LineWidth',1);
+plot(d,newInterHeight,'b','LineWidth',3);
 ylim([-300 0]);
 hold on
-plot(d,newInterHeightNonLinear,'LineWidth',2);
+plot(d,newInterHeightNonLinear,'g', 'LineWidth',2);
 hold on
-plot(d,newInterHeightNonLinearNoNeighbors,'LineWidth',1);
+plot(d,newInterHeightNonLinearNoNeighbors,'r','LineWidth',1);
 legend("Minimizing bombs","Smoothing","No neighbors")
 
 
