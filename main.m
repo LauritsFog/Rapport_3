@@ -77,7 +77,7 @@ plot(d,newInterHeight,'r');
 hold all
 for i = 1:length(xValues)
     if xValues(i) == 1
-        xline(i*0.25);
+        xline((i-1)*0.25);
     end
 end
 legend('Height before bombing','Height after bombing','Placement of bombs');
@@ -88,9 +88,9 @@ ylabel('Height from sea level (m)');
 
 % Plotting the new height map with bombs.
 
-figure(3)
-plot(d(1:end),newInterHeight);
-ylim([-300 0]);
+% figure(3)
+% plot(d(1:end),newInterHeight);
+% ylim([-300 0]);
 
 % hold on
 % for i = 1:length(objectiveFunction)
@@ -120,7 +120,7 @@ plot(d,newInterHeightNonLinear,'r');
 hold all
 for i = 1:length(xValuesNonLinear)
     if xValuesNonLinear(i) == 1
-        xline(i*0.25);
+        xline((i-1)*0.25);
     end
 end
 legend('Height before bombing','Height after bombing','Placement of bombs');
@@ -146,7 +146,7 @@ plot(d,newInterHeightNonLinearNoNeighbors,'r');
 hold all
 for i = 1:length(xValuesNonLinearNoNeighbors)
     if xValuesNonLinearNoNeighbors(i) == 1
-        xline(i*0.25);
+        xline((i-1)*0.25);
     end
 end
 legend('Height before bombing','Height after bombing','Placement of bombs');
@@ -157,31 +157,26 @@ ylabel('Height from sea level (m)');
 
 xBombs = table2array(readtable("xValuesNonLinearExtended.csv"));
 yBombs = table2array(readtable("yValuesNonLinearExtended.csv"));
-zBombs = table2array(readtable("zValuesNonLinearExtended.csv"));
+% zBombs = table2array(readtable("zValuesNonLinearExtended.csv"));
 
 dirtRemovedNonLinearExtended = table2array(readtable("RValuesNonLinearExtended.csv"));
 
-newInterHeightNonLinearExtended = interHeight(2:end-2)-dirtRemovedNonLinearExtended;
+newInterHeightNonLinearExtended = interHeight-dirtRemovedNonLinearExtended;
 
 %%
 
 figure(6)
-title('Minimizing number of bombs with possibility of three different bombs');
 plot(d,interHeight,'b');
 hold on
-plot(d(2:end-2),newInterHeightNonLinearExtended,'r');
+plot(d,newInterHeightNonLinearExtended,'r');
 for i = 1:length(newInterHeightNonLinearExtended)
     if xBombs(i) == 1
         hold on
-        xline(i*0.25,'g');
+        xline((i-1)*0.25,'g');
     end
     if yBombs(i) == 1
         hold on
-        xline(i*0.25,'m');
-    end
-    if zBombs(i) == 1
-        hold on
-        xline(i*0.25,'c');
+        xline((i-1)*0.25,'m');
     end
 end
 
@@ -194,15 +189,20 @@ ylabel('Height from sea level (m)');
 %% Plots together
 
 figure(7)
-plot(d,newInterHeight,'g','LineWidth',3);
-ylim([-300 0]);
+p1 = plot(d,newInterHeight,'g','LineWidth',4);
 hold on
-plot(d,newInterHeightNonLinear,'r','LineWidth',1.3);
+p2 = plot(d,newInterHeightNonLinear,'c','LineWidth',3);
 hold on
-plot(d,newInterHeightNonLinearNoNeighbors,'b','LineWidth',1.3);
-legend("Minimizing bombs","Maximizing smoothness","Maximizing smoothness without neighbors")
+p3 = plot(d,newInterHeightNonLinearNoNeighbors,'r','LineWidth',2);
+hold on
+p4 = plot(d,newInterHeightNonLinearExtended,'b','LineWidth',1);
+legend("Minimizing bombs","Maximizing smoothness","Maximizing smoothness without neighbors","Maximizing smoothness with yield dilation")
 xlabel('Distance from sea (km)');
 ylabel('Height from sea level (m)');
+% p1.Color(4) = 0.6;
+% p2.Color(4) = 0.6;
+% p3.Color(4) = 0.6;
+% p4.Color(4) = 0.6;
 
 %% Number of bombs
 
@@ -217,7 +217,20 @@ distancebetweenbombs=xValuesNonLinearNoNeighbors-xValuesNonLinear;
 
 %%
 
-table(std(newInterHeight),std(newInterHeightNonLinear),std(newInterHeightNonLinearNoNeighbors))
+table(std(newInterHeight),std(newInterHeightNonLinear),std(newInterHeightNonLinearNoNeighbors),std(newInterHeightNonLinearExtended))
 
+%%
 
+objFuncMod1 = dirtRemoved - interHeight - 10;
+objFuncMod2 = dirtRemovedNonLinear - interHeight - 10;
+objFuncMod3 = dirtRemovedNonLinearNoNeighbors - interHeight - 10;
+objFuncMod4 = dirtRemovedNonLinearExtended - interHeight - 10;
 
+%%
+
+table(sum(objFuncMod1),sum(objFuncMod2),sum(objFuncMod3),sum(objFuncMod4))
+
+%%
+
+figure(8)
+plot(d,dirtRemovedNonLinear,d,dirtRemovedNonLinearNoNeighbors);

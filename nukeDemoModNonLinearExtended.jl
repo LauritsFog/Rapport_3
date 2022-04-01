@@ -18,9 +18,9 @@ function constructA(H,K)
                 A[i,j] = K[1]
             elseif i == j+1 || i == j-1
                 A[i,j] = K[2]
-            # elseif i == j+2 || i == j-2
-            #     A[i,j] = K[3]
-            # end
+            elseif i == j+2 || i == j-2
+                A[i,j] = K[3]
+            end
         end
     end
     return A
