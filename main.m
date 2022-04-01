@@ -3,6 +3,10 @@ data = importdata('channel_data.txt');
 % Conversion constants:
 
 miles2km = 1.609344;
+
+% Ref. for long2miles and lat2miles:
+% https://www.usgs.gov/faqs/how-much-distance-does-degree-minute-and-second-cover-your-maps
+
 long2miles = 54.6;
 lat2miles = 69;
 
